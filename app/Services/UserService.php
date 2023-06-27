@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Services;
 
@@ -11,5 +11,30 @@ class UserService
     public function __construct(UserRepositoryInterface $repository)
     {
         $this->repository = $repository;
+    }
+
+    public function getAll(string $filter = ''): array
+    {
+        return $this->repository->getAll($filter);
+    }
+
+    public function findById(string $id): ?object
+    {
+        return $this->repository->findById($id);
+    }
+
+    public function create(array $data): object
+    {
+        return $this->repository->create($data);
+    }
+
+    public function update(string $id, array $data): ?object
+    {
+        return $this->repository->update($id, $data);
+    }
+
+    public function delete(string $id): bool
+    {
+        return $this->repository->delete($id);
     }
 }
