@@ -1,4 +1,4 @@
-<?php
+<!-- <?php
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\{
@@ -11,4 +11,4 @@ Route::prefix('admin')->group(function () {
 
 Route::get('/', function() {
     return view('welcome');
-});
+}); -->
