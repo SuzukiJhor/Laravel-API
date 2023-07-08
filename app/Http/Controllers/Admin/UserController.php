@@ -12,7 +12,6 @@ class UserController extends Controller
 
     public function __construct(UserService $service)
     {
-        info('ola');
         $this->service = $service;
     }
 
@@ -21,8 +20,6 @@ class UserController extends Controller
         $users = $this->service->getAll(
             filter: $request->get('filter', '')
         );
-
-        dd($users);
 
         return view('admin.users.index', compact('users'));
     }

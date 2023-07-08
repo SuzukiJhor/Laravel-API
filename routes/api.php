@@ -14,5 +14,5 @@ Route::prefix('admin')->group(function () {
 });
 
 Route::get('/', function() {
-    return view('welcome');
+    return 'Oi eu Sou o Goku!';
 });
