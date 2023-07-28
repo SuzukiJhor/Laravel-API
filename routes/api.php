@@ -10,5 +10,5 @@ Route::prefix('admin')->group(function () {
 });
 
 Route::get('/', function() {
-    return 'api';
+    return 'Oi eu sou Goku api';
 });

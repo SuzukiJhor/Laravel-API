@@ -51,7 +51,7 @@ class User extends Authenticatable
     protected function createdAt(): Attribute
     {
         return Attribute::make(
-            get: fn ($value)=> Carbon::make($value)->format('d/m/y'),
+            get: fn ($value) => Carbon::make($value)->format('d/m/y'),
         );
     }
 }

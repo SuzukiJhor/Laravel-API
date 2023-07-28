@@ -39,7 +39,6 @@ class UserController extends Controller
     public function edit($id)
     {
         if (!$user = $this->service->findById($id)) {
-
             return redirect()->back();
         }
         
@@ -48,6 +47,10 @@ class UserController extends Controller
 
     public function update(Request $request, $id)
     {
-        dd($request->all());
+        if ($this->service->update($id, $request->validate())) {
+            return redirect()->back();
+        };
+
+        return redirect()->route('users.index');
     }
 }
