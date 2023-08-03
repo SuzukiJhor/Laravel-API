@@ -42,12 +42,14 @@ class UserRepository implements UserRepositoryInterface
     }
 
     public function update(string $id, array $data): object|null
-    {
+    {   
         if (!$user = $this->findById($id)) {
             return null;
         }
+        
+        $user->update($data);
 
-        return $user->update($data);
+        return $user;
     }
 
     public function delete(string $id): bool
