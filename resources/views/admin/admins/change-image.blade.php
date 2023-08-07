@@ -1,16 +1,16 @@
 @extends('admin.layouts.app')
 
-@section('title', 'Alterar image do Usuário')
+@section('title', 'Alterar image do Administrador')
 
 @section('content')
 
-    <h1 class="w-full text-3xl text-black pb-6">Alterar Imagem do Usuário {{ $user->name }}</h1>
+    <h1 class="w-full text-3xl text-black pb-6">Alterar Imagem do Administrador {{ $admin->name }}</h1>
 
     <div class="flex flex-wrap">
         <div class="w-full my-6 pr-0 lg:pr-2">
             <div class="leading-loose">
 
-                <form class="p-10 bg-white rounded shadow-xl" action="{{ route('users.update.image', $user->id) }}"
+                <form class="p-10 bg-white rounded shadow-xl" action="{{ route('admins.update.image', $admin->id) }}"
                     method="POST" enctype="multipart/form-data">
                     @include('admin.includes.alerts')
                     @method('PUT')
