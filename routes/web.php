@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\{
     AdminController,
+    CourseController,
     UserController,
     DashboardController
 };
@@ -10,6 +11,11 @@ use App\Http\Controllers\Admin\{
 Route::group(['middleware' => 'web'], function () {
     
     Route::prefix('admin')->group(function () {
+        /*
+        Routes Courses
+        */
+
+        Route::resource('/courses',CourseController::class);
 
         /*
         Routes Users
