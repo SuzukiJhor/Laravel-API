@@ -46,11 +46,11 @@ class CourseController extends Controller
 
     public function edit($id)
     {   
-        if (!$courses = $this->service->findById($id)) {
+        if (!$course = $this->service->findById($id)) {
             return back();
         };
-
-        return view('admin.courses.edit', compact('courses'));
+       
+        return view('admin.courses.edit', compact('course'));
     }
 
     public function update(Request $request, UploadFile $uploadFile, $id)
@@ -59,9 +59,16 @@ class CourseController extends Controller
         $data['available'] = isset($request->available);
 
         if ($request->image) {
+            $course = $this->service->findById($id);
+            if ( $course && $course->image) {
+                $uploadFile->removeFile($course->image);
+            }
+
             $data['image'] = $uploadFile->store($request->image, 'courses');
         }
-        $this->service->upadte();
+    
+        $this->service->update($id, $data);
 
+        return redirect()->route('courses.index');
     }
 }

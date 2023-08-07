@@ -29,4 +29,9 @@ class CourseService
     {
         return $this->repository->findById($id);
     }
+
+    public function update(string $id, array $data)
+    {
+        return $this->repository->update($id, $data);
+    }
 }
