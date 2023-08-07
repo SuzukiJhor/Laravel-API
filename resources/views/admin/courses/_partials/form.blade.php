@@ -3,11 +3,11 @@
 @csrf
 <div class="">
     <label class="block text-sm text-gray-600" for="name">Nome *</label>
-    <input class="w-full px-5 py-2 text-gray-700 bg-gray-200 rounded" id="name" name="name" type="text"  placeholder="Nome" aria-label="Name" value="{{ $course->name ?? old('name') }}">
+    <input class="w-full px-5 py-2 text-gray-700 bg-gray-200 rounded" id="name" name="name" type="text"  placeholder="Nome" aria-label="Name" value="{{ $courses->name ?? old('name') }}">
 </div>
 <div class="py-2">
     <label class="block text-sm text-gray-600" for="available">
-        <input class="" id="available" name="name" type="checkbox" aria-label="available" value="1" @checked($course->available ?? false)>
+        <input class="" id="available" name="name" type="checkbox" aria-label="available" value="1" @checked($courses->available ?? false)>
         Disponível
     </label>
 </div>

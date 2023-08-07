@@ -16,8 +16,19 @@ class Course extends Model
         'available',
     ];
 
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array<string, string>
+     */
+    protected $casts = [
+        'id' => 'string',
+    ];
+
     public function modules () 
     {
         return $this->hasMany(Module::class);
     }
+
+     
 };
