@@ -15,8 +15,13 @@ class CourseService
 
     public function getAll(string $filter = ''): array
     {   
-        $users = $this->repository->getAll($filter);
+        $courses = $this->repository->getAll($filter);
 
-        return convertArrayToObject(($users));
+        return convertArrayToObject(($courses));
+    }
+
+    public function create(array $data)
+    {
+        $this->repository->create($data);
     }
 }

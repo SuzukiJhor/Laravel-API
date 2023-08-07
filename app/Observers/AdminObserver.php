@@ -8,7 +8,7 @@ use Illuminate\Support\Str;
 class AdminObserver
 {
     /**
-     * Handle the User "creating" event.
+     * Handle the Admin "creating" event.
      *
      * @param  \App\Models\User  $admin
      * @return voidd
