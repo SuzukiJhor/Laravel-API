@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Course\StoreCourse;
+use App\Http\Requests\Course\StoreUpdateCourse;
 use App\Services\CourseService;
 use App\Services\UploadFile;
 use Illuminate\Http\Request;
@@ -31,9 +31,10 @@ class CourseController extends Controller
         return view('admin.courses.create');
     }
 
-    public function store(StoreCourse $request, UploadFile $uploadFile)
-    {
-        $data = $request->only('name');
+    public function store(StoreUpdateCourse $request, UploadFile $uploadFile)
+    {  
+
+        $data = $request->only('name', 'description');
         $data['available'] = isset($request->available);
 
         if($request->image) {
@@ -53,9 +54,10 @@ class CourseController extends Controller
         return view('admin.courses.edit', compact('course'));
     }
 
-    public function update(Request $request, UploadFile $uploadFile, $id)
+    public function update(StoreUpdateCourse $request, UploadFile $uploadFile, $id)
     {
-        $data = $request->only('name');
+
+        $data = $request->only('name', 'description');
         $data['available'] = isset($request->available);
 
         if ($request->image) {
@@ -68,6 +70,23 @@ class CourseController extends Controller
         }
     
         $this->service->update($id, $data);
+
+        return redirect()->route('courses.index');
+    }
+
+    public function show($id)
+    {
+        if (!$course = $this->service->findById($id)) {
+            return back();
+        }
+
+        return view('admin.courses.show', compact('course'));
+    }
+
+    public function destroy($id)
+    {
+        if (!$this->service->delete($id))
+            return back();
 
         return redirect()->route('courses.index');
     }

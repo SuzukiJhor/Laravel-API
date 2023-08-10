@@ -39,11 +39,11 @@
                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                         <div class="flex items-center">
                             <div class="flex-shrink-0 w-10 h-10">
-                                @if ($course->image)
-                                    <img class="w-full h-full rounded-full"
-                                        src="{{ $course->image }}"
-                                        alt="{{ $course->name }}" />
-                                @endif
+                               
+                                <img class="w-full h-full rounded-full"
+                                    src="{{ $course->image ? url("storage/{$course->image}") : url('images/user.png') }}"
+                                    alt="{{ $course->name }}" />
+                               
                             </div>
                             <div class="ml-3">
                                 <p class="text-gray-900 whitespace-no-wrap">
