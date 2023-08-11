@@ -5,22 +5,29 @@ use App\Http\Controllers\Admin\{
     AdminController,
     CourseController,
     UserController,
-    DashboardController
+    DashboardController,
+    ModuleController
 };
 
 Route::group(['middleware' => 'web'], function () {
     
     Route::prefix('admin')->group(function () {
         /*
+        Modules
+        */
+        Route::resource(
+            name: '/courses/{courseId}/modules',
+            controller: ModuleController::class
+        );
+
+        /*
         Routes Courses
         */
-
         Route::resource('/courses',CourseController::class);
 
         /*
         Routes Users
         */
-        
         Route::put('/admins/{id}/update-image', [AdminController::class, 'uploadFile'])->name('admins.update.image');
         Route::get('/admins/{id}/image', [AdminController::class, 'changeImage'])->name('admins.change.image');
         Route::resource('/admins', AdminController::class);
@@ -28,7 +35,6 @@ Route::group(['middleware' => 'web'], function () {
         /*
         Routes Users
         */
-        
         Route::put('/users/{id}/update-image', [userController::class, 'uploadFile'])->name('users.update.image');
         Route::get('/users/{id}/image', [userController::class, 'changeImage'])->name('users.change.image');
         Route::delete('/users/{id}', [UserController::class , 'destroy'])->name('users.destroy');
