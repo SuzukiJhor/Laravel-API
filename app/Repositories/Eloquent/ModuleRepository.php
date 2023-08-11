@@ -25,7 +25,7 @@ class ModuleRepository implements ModuleRepositoryInterface
             ->where('course_id', $courseId)
             ->get();
 
-        return $modules->toArray();
+        return $modules;
     }
 
     public function findById(string $id): ?object
