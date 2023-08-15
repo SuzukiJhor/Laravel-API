@@ -6,7 +6,7 @@
 
 <h1 class="text-3xl text-black pb-6">
     Módulos do Curso {{ $course->name }}
-    <a href="{{ route('courses.create', $course->id) }}" class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">
+    <a href="{{ route('modules.create', $course->id) }}" class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">
         <i class="fas fa-plus"></i>
     </a>
 </h1>
@@ -22,7 +22,9 @@
                     <th
                         class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                         Nome
-                    </th>
+                    </th>  
+
+                    <th
                         class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                         Ações
                     </th>
@@ -74,7 +76,6 @@
                             </span>
                         </a>
 
-                        
                     </td>
                 </tr>
                 @empty
