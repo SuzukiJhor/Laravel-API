@@ -16,7 +16,7 @@ class ModuleRepository implements ModuleRepositoryInterface
 
     public function getAllByCourseId(string $courseId, string $filter = ''): array
     {
-        $modules = $this->model
+        $data = $this->model
             ->where(function ($query) use ($filter) {
                 if ($filter) {
                     $query->orWhere('name', 'LIKE', "%{$filter}%");
@@ -25,7 +25,7 @@ class ModuleRepository implements ModuleRepositoryInterface
             ->where('course_id', $courseId)
             ->get();
 
-        return $modules->toArray();
+        return $data->toArray();
     }
 
     public function findById(string $id): ?object

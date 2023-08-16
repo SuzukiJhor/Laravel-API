@@ -1,6 +1,6 @@
 @extends('admin.layouts.app')
 
-@section('title', 'Módulos do Curso {$course->name}')
+@section('title', "Módulos do Curso {$course->name}")
 
 @section('content')
 
@@ -13,7 +13,10 @@
 
 <div class="w-full mt-12">
 
-    {{-- @include('admin.includes.form-search', ['routerName' => 'courses.index']) --}}
+    @include('admin.includes.form-search', [
+        'routerName' => 'modules.index',
+        'params' => $course->id
+    ])
 
     <div class="bg-white overflow-auto">
         <table class="min-w-full leading-normal">
@@ -22,8 +25,7 @@
                     <th
                         class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                         Nome
-                    </th>  
-
+                    </th>
                     <th
                         class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                         Ações
@@ -35,53 +37,43 @@
                 <tr>
                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                         <div class="flex items-center">
-                            <div class="flex-shrink-0 w-10 h-10">
-                               
-                                <img class="w-full h-full rounded-full"
-                                    src="{{ $module->image ? url("storage/{$module->image}") : url('images/user.png') }}"
-                                    alt="{{ $module->name }}" />
-                               
-                            </div>
-                            <div class="ml-3">
-                                <p class="text-gray-900 whitespace-no-wrap">
-                                    {{ $module->name }}
-                                </p>
-                            </div>
+                            <p class="text-gray-900 whitespace-no-wrap">
+                                {{ $module->name }}
+                            </p>
                         </div>
                     </td>
-                
                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                        <a href="{{ route('modules.show', $module->id) }}">
+                        <a href="{{ route('modules.show', [$course->id, $module->id]) }}">
                             <span
-                                class="relative inline-block px-3 py-1 font-semibold text-black-900 leading-tight">
+                                class="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
                                 <span aria-hidden
                                     class="absolute inset-0 bg-green-200 opacity-50 rounded-full"></span>
                                 <span class="relative">Detalhes</span>
                             </span>
                         </a>
-                        <a href="{{ route('modules.edit', $module->id) }}">
+                        <a href="{{ route('modules.edit', [$course->id, $module->id]) }}">
                             <span
-                                class="relative inline-block px-3 py-1 font-semibold text-black-900 leading-tight">
+                                class="relative inline-block px-3 py-1 font-semibold text-red-900 leading-tight">
                                 <span aria-hidden
-                                    class="absolute inset-0 bg-yellow-200 opacity-50 rounded-full"></span>
+                                    class="absolute inset-0 bg-red-200 opacity-50 rounded-full"></span>
                                 <span class="relative">Editar</span>
                             </span>
                         </a>
-                        <a href="{{ route('modules.index', $module->id) }}">
+
+                        <a href="">
                             <span
-                                class="relative inline-block px-3 py-1 font-semibold text-black-900 leading-tight">
+                                class="relative inline-block px-3 py-1 font-semibold text-blue-900 leading-tight">
                                 <span aria-hidden
                                     class="absolute inset-0 bg-blue-200 opacity-50 rounded-full"></span>
                                 <span class="relative">Aulas</span>
                             </span>
                         </a>
-
                     </td>
                 </tr>
                 @empty
                     <tr>
                         <td colspan="1000">
-                            Sem nenhum Módulo.
+                            Sem nenhum módulo
                         </td>
                     </tr>
                 @endforelse

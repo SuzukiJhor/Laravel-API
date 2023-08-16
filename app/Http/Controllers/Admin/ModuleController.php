@@ -18,12 +18,17 @@ class ModuleController extends Controller
         $this->repository = $repository;
     }
 
-    public function index($courseId)
+    public function index(Request $request, $courseId)
     {
         if (!$course = $this->repositoryCourse->findById($courseId))
             return back();
 
-        $modules = $this->repository->getAllByCourseId($courseId);
+        $data = $this->repository->getAllByCourseId(
+            courseId: $courseId,
+            filter: $request->filter ?? ''
+        );
+
+        $modules = convertArrayToObject($data);
 
         return view('admin.courses.modules.index-modules', compact('course', 'modules'));
     }
@@ -38,11 +43,26 @@ class ModuleController extends Controller
 
     public function store(Request $request, $courseId)
     {
-        if ($course = $this->repositoryCourse->findById($courseId))
+        if (!$this->repositoryCourse->findById($courseId))
             return back();
-        
-        $this->repository->createByCourse(())
-        
-        return view('admin.courses.modules.index-modules', compact('course'));
+
+        $this->repository
+                ->createByCourse($courseId, $request->only(['name']));
+
+        // $course->modules()->create($request->only(['name']))
+ 
+        return redirect()->route('modules.index', $courseId);
+    }
+
+    public function edit($courseId, $id)
+    {
+        if (!$course = $this->repositoryCourse->findById($courseId))
+            dd($course);
+            return back();
+
+        if (!$module = $this->repository->findById($courseId))
+            return back();
+
+        return view('admin.courses.modules.edit-modules', compact('course', 'module'));
     }
 }
