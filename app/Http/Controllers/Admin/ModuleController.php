@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreUpdateModule;
 use App\Repositories\CourseRepositoryInterface;
 use App\Repositories\ModuleRepositoryInterface;
 use Illuminate\Http\Request;
@@ -55,14 +56,35 @@ class ModuleController extends Controller
     }
 
     public function edit($courseId, $id)
-    {
+    {   
         if (!$course = $this->repositoryCourse->findById($courseId))
-            dd($course);
             return back();
 
-        if (!$module = $this->repository->findById($courseId))
+        if (!$module = $this->repository->findById($id))
             return back();
 
         return view('admin.courses.modules.edit-modules', compact('course', 'module'));
+    }
+
+    public function update(StoreUpdateModule $request,$courseId, $id)
+    {
+        if (!$this->repositoryCourse->findById($courseId))
+            return back();
+        
+        $this->repository->update($id, $request->only('name'));
+
+        return redirect()->route('modules.index', $courseId);
+    }
+
+    public function show($courseId, $id)
+    {
+         
+        if (!$course = $this->repositoryCourse->findById($courseId))
+            return back();
+
+        if (!$module = $this->repository->findById($id))
+            return back();
+
+        return view('admin.courses.modules.show-modules', compact('course', 'module'));
     }
 }

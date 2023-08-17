@@ -18,7 +18,15 @@ class Course extends Model
         'image',
         'available',
     ];
+    
+      /**
+     * The data type of the auto-incrementing ID.
+     *
+     * @var string
+     */
+    protected $keyType = 'string';
 
+   
     /**
      * The attributes that should be cast.
      *

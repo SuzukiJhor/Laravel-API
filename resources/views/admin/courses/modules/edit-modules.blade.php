@@ -10,9 +10,9 @@
 <div class="flex flex-wrap">
     <div class="w-full my-6 pr-0 lg:pr-2">
         <div class="leading-loose">
-            <form class="p-10 bg-white rounded shadow-xl" action="{{ route('courses.update', $course->id) }}" method="POST" enctype="multipart/form-data">
+            <form class="p-10 bg-white rounded shadow-xl" action="{{ route('modules.update', [$course->id, $module->id]) }}" method="POST" enctype="multipart/form-data">
                 @method('PUT')
-                @include('admin.courses._partials.form')
+                @include('admin.courses.modules._partials.form')
             </form>
         </div>
     </div>
