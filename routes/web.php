@@ -12,6 +12,12 @@ use App\Http\Controllers\Admin\{
 Route::group(['middleware' => 'web'], function () {
     
     Route::prefix('admin')->group(function () {
+
+        /*
+        Lessons
+        */
+        Route::resource('/modules/{moduleId}/lessons',LessonController::class);
+        
         /*
         Modules
         */

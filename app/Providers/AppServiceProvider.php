@@ -44,6 +44,11 @@ class AppServiceProvider extends ServiceProvider
             ModuleRepositoryInterface::class,
             ModuleRepository::class,
         );
+
+        $this->app->singleton(
+            LessonRepositoryInterface::class,
+            LessonRepository::class,
+        );
     }
 
     /**
