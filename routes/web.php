@@ -6,7 +6,8 @@ use App\Http\Controllers\Admin\{
     CourseController,
     UserController,
     DashboardController,
-    ModuleController
+    ModuleController,
+    LessonController
 };
 
 Route::group(['middleware' => 'web'], function () {

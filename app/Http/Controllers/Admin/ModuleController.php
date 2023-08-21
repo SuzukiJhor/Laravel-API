@@ -71,7 +71,7 @@ class ModuleController extends Controller
         if (!$this->repositoryCourse->findById($courseId))
             return back();
         
-        $this->repository->update($id, $request->only('name'));
+        $this->repository->update($id, $request->validated());
 
         return redirect()->route('modules.index', $courseId);
     }

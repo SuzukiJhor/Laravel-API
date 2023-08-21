@@ -7,12 +7,14 @@ use App\Repositories\Eloquent\{
     CourseRepository,
     ModuleRepository,
     UserRepository,
+    LessonRepository
 };
 use App\Repositories\{
     AdminRepositoryInterface,
     CourseRepositoryInterface,
     ModuleRepositoryInterface,
-    UserRepositoryInterface
+    UserRepositoryInterface,
+    LessonRepositoryInterface
 };
 use Illuminate\Support\ServiceProvider;
 

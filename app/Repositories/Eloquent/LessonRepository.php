@@ -38,7 +38,7 @@ class LessonRepository implements LessonRepositoryInterface
     public function createByModule(string $moduleId, array $data): object
     {
         $data['module_id'] = $moduleId;
-        
+      
         return $this->model->create($data);
     }
 
