@@ -7,12 +7,17 @@ use App\Http\Controllers\Admin\{
     UserController,
     DashboardController,
     ModuleController,
-    LessonController
+    LessonController,
+    SupportController
 };
 
 Route::group(['middleware' => 'web'], function () {
     
     Route::prefix('admin')->group(function () {
+        /**
+         * Supports
+         */
+        Route::get('/supports', [SupportController::class, 'index']);
 
         /*
         Lessons

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Services\SupportService;
 use Illuminate\Http\Request;
 
 class SupportController extends Controller
@@ -17,7 +18,7 @@ class SupportController extends Controller
     public function index(Request $request)
     {
         $supports = $this->service->getSupports(
-            status: $request->get('status','p')
+            status: $request->get('status','P')
         );
 
         return view('admin.supports.index', compact('supports'));
