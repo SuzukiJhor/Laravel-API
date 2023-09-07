@@ -18,7 +18,7 @@ class SupportRepository implements SupportRepositoryInterface
     {
         $admins = $this->model->where(function ($query) use ($status) {
             if ($status) {
-                $query->orWhere('name', 'LIKE', "%{$status}%");
+                $query->orWhere('description', 'LIKE', "%{$status}%");
             }
         })->get();
 
