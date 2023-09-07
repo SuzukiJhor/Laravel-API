@@ -17,11 +17,10 @@ class SupportController extends Controller
 
     public function index(Request $request)
     {
-        info($request);
-        // $supports = $this->service->getSupports(
-        //     status: $request->get('status','P')
-        // );
+        $supports = $this->service->getSupports(
+            status: $request->get('status','P')
+        );
 
-        // return view('admin.supports.index', compact('supports'));
+        return view('admin.supports.index', compact('supports'));
     }
 }

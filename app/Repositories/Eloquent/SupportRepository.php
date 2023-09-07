@@ -13,16 +13,12 @@ class SupportRepository implements SupportRepositoryInterface
     {
         $this->model = $model;
     }
-
+ 
     public function getByStatus(string $status): array
     {
-        $admins = $this->model->where(function ($query) use ($status) {
-            if ($status) {
-                $query->orWhere('description', 'LIKE', "%{$status}%");
-            }
-        })->get();
+        $supports = $this->model->where('status', $status)->with(['user', 'lesson'])->get();
 
-        return $admins->toArray();
+        return $supports->toArray();
 
     }
 
