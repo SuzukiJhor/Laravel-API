@@ -13,20 +13,24 @@ class SupportRepository implements SupportRepositoryInterface
     {
         $this->model = $model;
     }
- 
+
     public function getByStatus(string $status): array
     {
         $supports = $this->model->where('status', $status)->with(['user', 'lesson'])->get();
 
         return $supports->toArray();
-
     }
 
     public function findById(string $id): object|null
     {
-        $course = $this->model->find($id);
 
-        return $course;
+        return $this->model
+            ->with([
+                'user',
+                'lesson',
+                'replies.user',
+                'replies.admin',
+            ])
+            ->find($id);
     }
-
 }

@@ -23,4 +23,12 @@ class SupportController extends Controller
 
         return view('admin.supports.index', compact('supports'));
     }
+
+    public function show($id)
+    {
+    
+        if (!$support = $this->service->getSupportById($id))
+            return back();
+        return view('admin.supports.details-support', compact('support'));
+    }
 }

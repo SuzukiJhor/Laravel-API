@@ -8,16 +8,24 @@ use App\Http\Controllers\Admin\{
     DashboardController,
     ModuleController,
     LessonController,
-    SupportController
+    SupportController,
+    ReplySupportController
 };
 
 Route::group(['middleware' => 'web'], function () {
     
     Route::prefix('admin')->group(function () {
+
         /**
-         * Supports
+         * Reply Support
          */
-        Route::get('/supports', [SupportController::class, 'index']);
+        Route::post('/supports/{id}/reply', [ReplySupportController::class, 'store'])->name('replies.store');
+
+        /**
+         * Supportsstore
+         */
+        Route::get('/supports/{id}', [SupportController::class, 'show'])->name('supports.show');
+        Route::get('/supports', [SupportController::class, 'index'])->name('supports.index');
 
         /*
         Lessons
