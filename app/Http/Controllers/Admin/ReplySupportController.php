@@ -16,7 +16,7 @@ class ReplySupportController extends Controller
         $this->repository = $repository;
     }
 
-    public function store(Request $request, $supportId)
+    public function store(StoreReplySupport $request, $supportId)
     {
         $data = $request->only('description', 'support_id');
     

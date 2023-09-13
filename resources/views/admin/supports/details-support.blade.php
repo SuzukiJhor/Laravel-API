@@ -33,11 +33,13 @@
 
                 @foreach ($support->replies as $reply)
                     <div class="chat-message">
+              
                         @php
                             $user = $reply->user ?? $reply->admin;
                         @endphp
 
                         @if ($user->id == $support->user->id)
+
                             <div class="flex items-end">
                                 <div class="flex flex-col space-y-2 max-w-xs mx-2 order-2 items-start">
                                     <div><span class="px-4 py-2 rounded-lg inline-block rounded-bl-none bg-gray-300 text-gray-600">
@@ -46,7 +48,7 @@
                                 </div>
                                 <img src="{{ $user->image ? url("storage/{$user->image}") : url('images/user.png') }}" class="w-6 h-6 rounded-full order-1">
                             </div>
-                        @else
+                        {{-- @else
                             <div class="flex items-end justify-end">
                                 <div class="flex flex-col space-y-2 max-w-xs mx-2 order-1 items-end">
                                 <div><span class="px-4 py-2 rounded-lg inline-block rounded-br-none bg-blue-600 text-white ">
@@ -54,7 +56,7 @@
                                 </span></div>
                                 </div>
                                 <img src="{{ $user->image ? url("storage/{$user->image}") : url('images/user.png') }}" alt="My profile" class="w-6 h-6 rounded-full order-2">
-                            </div>
+                            </div> --}}
                         @endif
                     </div>
                 @endforeach

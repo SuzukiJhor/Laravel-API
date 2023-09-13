@@ -69,6 +69,8 @@ Route::group(['middleware' => 'web'], function () {
     });
     
     Route::get('/', function() {
-        return 'Oi eu Sou Goku web';
+        return view('welcome');
     });
 });
+
+require __DIR__.'/auth.php';
